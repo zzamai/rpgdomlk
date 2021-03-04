@@ -12,7 +12,11 @@ public class Mesa {
 		this.jogadores = jogadores;
 	}
 
-	public void getJogadores() {
+	public ArrayJogadores getJogadores() {
+		return this.jogadores;
+	}
+
+	public void getNomeJogadores() {
 		for (Jogador jogador:
 				jogadores.getJogadores()) {
 			System.out.println(jogador.getNome());
@@ -35,8 +39,8 @@ public class Mesa {
 		this.nomeMesa = nomeMesa;
 	}
 
-	public void setJogadores(ArrayJogadores jogadores) {
-		this.jogadores = jogadores;
+	public void addJogadores(Jogador jogador) {
+		this.jogadores.getJogadores().add(jogador);
 	}
 
 	public String toString() {

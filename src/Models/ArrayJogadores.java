@@ -22,6 +22,8 @@ public class ArrayJogadores {
 		}
 		return sb.toString();
 	}
+
+	public Jogador getJogador(int index) { return this.jogadores.get(index - 1); }
 	
 	public void addJogador(Jogador jogador) {
 		this.jogadores.add(jogador);

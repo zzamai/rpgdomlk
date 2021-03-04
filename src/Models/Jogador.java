@@ -4,12 +4,16 @@ import java.util.Scanner;
 
 public class Jogador {
 
+	private static int idGen = 1;
+	private int id;
+
 	Ficha_Personagem personagem;
 	private final Dado dado;
 
 	public Jogador() {
 		dado = new Dado();
 		System.out.println("Criando personagem");
+		id = idGen++;
 	}
 
 	public int jogaDado() {
@@ -29,6 +33,10 @@ public class Jogador {
 		System.out.println("Armadura:"+personagem.getArmadura());
 		System.out.println("Pontos de Vida:"+personagem.getHp());
 		System.out.println("Pontos de Magia:"+personagem.getMp());
+	}
+
+	public int getId() {
+		return this.id;
 	}
 
 	public String getNome() {

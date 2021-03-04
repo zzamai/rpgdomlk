@@ -6,7 +6,7 @@ import Models.*;
 
 public class Principal {
 
-	private static int idGen = 0;
+	public static int idGen = 0;
 
 	public static void main(String[] args) {
 		TheGame game;
@@ -20,11 +20,12 @@ public class Principal {
 		int nextInt;
 
 		System.out.println("Você deseja criar um 1-Mestre ou 2-Jogador:");
-		System.out.println("Aperta 3 para finalizar");
+		System.out.println("Aperta 3 para finalizar a criação do personagem");
 		nextInt = scanner1.nextInt();
 
 		while(nextInt == 1 || nextInt == 2) {
 			if(!temMestre && nextInt == 1 ) {
+				System.out.println("Digite o nome do Mestre:");
 				mestre = new Mestre(scanner2.nextLine());
 				temMestre = true;
 			} else if(nextInt == 2) {
