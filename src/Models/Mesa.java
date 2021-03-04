@@ -1,70 +1,45 @@
 package Models;
 
-import java.util.Random;
-
 public class Mesa {
 	
-	private int 	Idmesa;
-	private int 	Tamanho;
-	private String 	Nomemesa;
-	private String  aramazenaNome[];
+	private int 	idMesa;
+	private String 	nomeMesa;
+	private ArrayJogadores jogadores;
 	
-	public Mesa(String nomemesa,int idmesa, int tamanho ) {
-		super();
-		Nomemesa = nomemesa;
-		Idmesa = idmesa;
-		Tamanho = tamanho;
-		
-	}
-	
-	// um dado para gerar um numero aleatorio entre 1 e 6
-	
-	public int dado() {
-		Random aleatorio = new Random();
-		int d6 = aleatorio.nextInt(6)+1;
-		return d6;
-	}
-	// mostra nome dos jogadores
-	public void Jogadores() {
-		for( int i = 0; i <= aramazenaNome.length; i++)
-	        System.out.printf( "\n",aramazenaNome[i]);
-		
-	}
-	
-	public int getIdmesa() {
-		return Idmesa;
+	public Mesa(String nomemesa,int idmesa, ArrayJogadores jogadores) {
+		idMesa = idmesa;
+		nomeMesa = nomemesa;
+		this.jogadores = jogadores;
 	}
 
-	public void setIdmesa(int idmesa) {
-		Idmesa = idmesa;
+	public void getJogadores() {
+		for (Jogador jogador:
+				jogadores.getJogadores()) {
+			System.out.println(jogador.getNome());
+		}
 	}
 
-	public int getTamanho() {
-		return Tamanho;
+	public int getIdMesa() {
+		return idMesa;
 	}
 
-	public void setTamanho(int tamanho) {
-		Tamanho = tamanho;
+	public void setIdMesa(int idMesa) {
+		this.idMesa = idMesa;
 	}
 
-	public String getNomemesa() {
-		return Nomemesa;
+	public String getNomeMesa() {
+		return nomeMesa;
 	}
 
-	public void setNomemesa(String nomemesa) {
-		Nomemesa = nomemesa;
+	public void setNomeMesa(String nomeMesa) {
+		this.nomeMesa = nomeMesa;
 	}
 
-	public String[] getAramazenaNome() {
-		return aramazenaNome;
+	public void setJogadores(ArrayJogadores jogadores) {
+		this.jogadores = jogadores;
 	}
 
-	public void setAramazenaNome(String[] aramazenaNome) {
-		this.aramazenaNome = aramazenaNome;
+	public String toString() {
+		return "Id da mesa: "+getIdMesa()+" Nome da mesa: "+getNomeMesa()+" \nJogadores: "+jogadores.getNomeJogadores();
 	}
-	
-	
-
-
-	
 }

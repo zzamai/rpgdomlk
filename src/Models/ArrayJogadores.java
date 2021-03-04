@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ArrayJogadores {
 
-	private ArrayList<Jogador> jogadores;
+	private final ArrayList<Jogador> jogadores;
 	
 	public ArrayJogadores() {
 		jogadores = new ArrayList<Jogador>();
@@ -12,6 +12,15 @@ public class ArrayJogadores {
 	
 	public ArrayList<Jogador> getJogadores() {
 		return this.jogadores;
+	}
+
+	public String getNomeJogadores() {
+		StringBuilder sb = new StringBuilder();
+		for (Jogador jogador :
+				jogadores) {
+			sb.append("\nNome: "+jogador.getNome());
+		}
+		return sb.toString();
 	}
 	
 	public void addJogador(Jogador jogador) {

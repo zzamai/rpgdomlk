@@ -1,6 +1,6 @@
 package Models;
 
-public class Ficha_Personagem {
+public class Ficha_Personagem extends Ficha {
 
 	private String 	nome;
 	private String 	classe;
@@ -12,7 +12,11 @@ public class Ficha_Personagem {
 	private int 	Hp;
 	private int 	Mp;
 	private int 	Xp;
-	
+
+	public Ficha_Personagem() {
+
+	}
+
 	public Ficha_Personagem(String nome, String classe, int forca, int resistencia, int poderdefogo, int habilidade,
 			int armadura) {
 		super();

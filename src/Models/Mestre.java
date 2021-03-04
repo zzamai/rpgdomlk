@@ -2,12 +2,37 @@ package Models;
 
 import java.util.Scanner;
 
-public class Mestre  {	
+public class Mestre  {
+
+	private Mesa mesa;
+	private String nome;
+	private ArrayNPC npcs;
+	private final Dado dado;
+
+	public Mestre () {
+		dado = new Dado();
+	}
+
+	public Mestre(String nome) {
+		super();
+		this.nome = nome;
+		dado = new Dado();
+		npcs = new ArrayNPC();
+		System.out.println("Mestre criado.");
+	}
+
+	public int jogaDado() {
+		return dado.rodaDado();
+	}
+
+	public void gerenciarMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
 
 	public void CriarNPC() {
-		Scanner input2 = new Scanner(System.in);
+		Scanner scanner1 = new Scanner(System.in);
 		System.out.println("Digite O Nome, A Classe e os Seguintes Atributos em Sequencia Força,Resistencia,Poder de Fogo,Habilidade e Armadura");	
-		Ficha_Personagem f1 = new Ficha_Personagem(input2.nextLine(),input2.nextLine(),input2.nextInt(),input2.nextInt(),input2.nextInt(),input2.nextInt(),input2.nextInt());
+		Ficha_NPC f1 = new Ficha_NPC(scanner1.nextLine(),scanner1.nextLine(),scanner1.nextInt(),scanner1.nextInt(),scanner1.nextInt(),scanner1.nextInt(),scanner1.nextInt());
 		System.out.println("Nome:"+f1.getNome());
 		System.out.println("Classe:"+f1.getClasse());
 		System.out.println("Força:"+f1.getForca());
@@ -17,14 +42,15 @@ public class Mestre  {
 		System.out.println("Armadura:"+f1.getArmadura());
 		System.out.println("Pontos de Vida:"+f1.getHp());
 		System.out.println("Pontos de Magia:"+f1.getMp());
+		npcs.addNPC(f1);
 	}
-		
-	public void CriaMesa() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Crie o Nome da Mesa  o Id da sala e o Numero de Jogadores");
-		Mesa m1 = new Mesa (input.nextLine(),input.nextInt(),input.nextInt());
-		System.out.println(""+m1.getNomemesa());
-		System.out.println(""+m1.getTamanho());
-		System.out.println(""+m1.getIdmesa());
+
+	public Mesa getMesa() {
+		return mesa;
 	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
 }

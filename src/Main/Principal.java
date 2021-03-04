@@ -1,32 +1,71 @@
 package Main;
 
 import java.util.Scanner;
-import Models.ArrayJogadores;
-import Models.Jogador;
-import Models.Mesa;
-import Models.Mestre;
+
+import Models.*;
 
 public class Principal {
 
+	private static int idGen = 0;
+
 	public static void main(String[] args) {
+		TheGame game;
+		Mestre mestre = new Mestre();
+		Mesa mesa;
+		String nomeMesa;
 		ArrayJogadores jogadores = new ArrayJogadores();
-		Scanner input2 = new Scanner(System.in);
+		Scanner scanner1 = new Scanner(System.in);
+		Scanner scanner2 = new Scanner(System.in);
 		boolean temMestre = false;
 		int nextInt;
-		
-		System.out.println("Você deseja selecionar 1-Mestre ou 2-Jogador:");
 
-		nextInt = input2.nextInt();	
-		while(nextInt != 1 || nextInt != 2) {
-			if(nextInt == 1 && !temMestre) {
-				Mestre m1 = new Mestre();
+		System.out.println("Você deseja criar um 1-Mestre ou 2-Jogador:");
+		System.out.println("Aperta 3 para finalizar");
+		nextInt = scanner1.nextInt();
+
+		while(nextInt == 1 || nextInt == 2) {
+			if(!temMestre && nextInt == 1 ) {
+				mestre = new Mestre(scanner2.nextLine());
 				temMestre = true;
-			} else {
+			} else if(nextInt == 2) {
 				Jogador novoJogador = new Jogador();
 				novoJogador.CriarPersonagem();
 				jogadores.addJogador(novoJogador);
+			} else {
+				invalidOption();
 			}
-			nextInt = input2.nextInt();	
+			System.out.println("Você deseja selecionar 1-Mestre ou 2-Jogador:");
+			nextInt = scanner1.nextInt();
 		}
+
+		if(!temMestre) {
+			System.out.println("A mesa não tem Mestre");
+			System.out.println("Crie um para que o jogo possa iniciar");
+			mestre = new Mestre(scanner2.nextLine());
+			temMestre = true;
+		}
+
+		System.out.println("Lista de jogadores:");
+		for (Jogador jogador:
+				jogadores.getJogadores()) {
+			System.out.println("Jogador: "+jogador.getNome());
+		}
+
+		System.out.println("O Mestre deverá criar a mesa");
+		System.out.println("Informe o nome da mesa:");
+
+		nomeMesa = scanner2.nextLine();
+		mesa = new Mesa(nomeMesa, idGen++, jogadores);
+
+		System.out.println(mesa.toString());
+
+		mestre.gerenciarMesa(mesa);
+		game = new TheGame(mestre);
+		game.start();
+	}
+
+	private static void invalidOption() {
+		System.out.println("Opção inválida no momento");
+		System.out.println("obs: só é possível ter 1 Mestre por jogo");
 	}
 }
